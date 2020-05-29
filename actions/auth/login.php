@@ -19,15 +19,19 @@ if (isset($_POST['submit'])) {
             ':pass' => hash_pass($_POST['pass'])
         ];
 
-        $stmt = $DBH->prepare("SELECT * FROM `users` WHERE `login` = :login  AND `password` = :pass");
+        $stmt = $DBH->prepare("SELECT `id`,`login`,`email`,`avatar`,`created_at` FROM `users` WHERE `login` = :login  AND `password` = :pass");
         $stmt->execute($params);
 
         $items = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if (is_array($items) && count($items) > 0) {
 
-            $_SESSION['login'] = $_POST['user'];
-            $_SESSION['avatar'] = $items['avatar'];
+            $_SESSION['user'] = $items;
+
+//            dd($_SESSION);
+           /* $_SESSION['login'] = $_POST['user'];
+            $_SESSION['avatar'] = $items['avatar'];*/
+
 
             header('Location: /');
             exit();

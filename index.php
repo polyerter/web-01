@@ -2,6 +2,11 @@
 require_once "helper.php";
 
 session_start();
+
+$user = getUser();
+
+//dd($_SERVER);
+//dd($user);
 ?>
 <!doctype html>
 <html lang="ru">
@@ -15,14 +20,16 @@ session_start();
 <body>
 
 <?php
-if (isset($_SESSION['login'])) { ?>
+if (isset($user['login'])) { ?>
     <p>
-        Привет, <?= $_SESSION['login']; ?>.
+        Привет, <?= $user['login']; ?>.
     </p>
 
     <p>
-        <img src="<?= $_SESSION['avatar'] ?>" style="height: 80px;">
+        <img src="<?= $user['avatar'] ?>" style="height: 80px;">
     </p>
+
+    <p><a href="/gallery">Gallery</a></p>
 
     <p>
         <a href="actions/auth/logout.php?do=logout">Выйти</a>

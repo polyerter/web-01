@@ -24,13 +24,13 @@ function hash_pass($pass)
     return md5("salt") . md5($pass);
 }
 
-function upload_file($file, $dir = "files", $name = null)
+function upload_file($file, $dir = "files", $name = null): string
 {
     $path = "/images/$dir/";
     $fullpath = __DIR__ . $path;
 
     if (!is_dir($fullpath)) {
-        if (!mkdir($fullpath)) {
+        if (!mkdir($fullpath, 0777, true)) {
             dd("Error create folder");
         }
     }
@@ -47,4 +47,15 @@ function upload_file($file, $dir = "files", $name = null)
 function genFileName()
 {
     return uniqid();
+}
+
+function getUser()
+{
+    return isset($_SESSION['user']) && !empty($_SESSION['user']) ? $_SESSION['user'] : null;
+}
+
+function location_back()
+{
+    header('Location: ' . $_SERVER['HTTP_REFERER']);
+    die;
 }
