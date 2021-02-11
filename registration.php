@@ -35,7 +35,7 @@
     </label>
     <br>
 
-    <button type="submit" name="submit">Submit</button>
+    <button type="button" name="submit">Submit</button>
 </form>
 
 </body>

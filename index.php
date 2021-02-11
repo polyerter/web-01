@@ -38,8 +38,8 @@ if (isset($user['login'])) { ?>
     <form method="POST" action="actions/auth/login.php">
         <label for="user">
             Username <br>
-            <input id="user" type="text" name="user">
         </label>
+        <input id="user" type="text" name="user">
         <br>
         <label for="pass">
             Password <br>
